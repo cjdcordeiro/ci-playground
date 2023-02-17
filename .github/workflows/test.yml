@@ -1,0 +1,12 @@
+name: test repo dispatch
+
+on:
+  repository_dispatch:
+    types: [from-cjdc]
+
+jobs:
+  hi:
+    runs-on: ubuntu-latest
+    name: hi job
+    steps:
+      - runs: echo hello
