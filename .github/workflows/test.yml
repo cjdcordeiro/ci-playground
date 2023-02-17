@@ -3,6 +3,7 @@ name: test repo dispatch
 on:
   repository_dispatch:
     types: [from-cjdc]
+  workflow_dispatch:
 
 jobs:
   hi:
