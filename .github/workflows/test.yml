@@ -4,6 +4,7 @@ on:
   repository_dispatch:
     types: [from-cjdc]
   workflow_dispatch:
+  push:
 
 jobs:
   hi:
