@@ -1,13 +1,13 @@
 name: test repo dispatch
 
 on:
-  repository_dispatch:
-    types: [from-cjdc]
-  workflow_dispatch:
-
+  status
 jobs:
-  hi:
+  status:
     runs-on: ubuntu-latest
-    name: hi job
     steps:
-      - run: echo hello
+      - env:
+          DESCRIPTION: ${{ github.event.description }}
+        run: |
+          echo The status is error or failed: $DESCRIPTION
+          echo ${{ github.event }}
