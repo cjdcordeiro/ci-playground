@@ -18,6 +18,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: |
-          echo tag -> ${{ github.event.registry_package.package_version.container_metadata.tag.name }}
-          echo name -> ${{ github.event.registry_package.name }}
-          echo event -> ${ github.event }}
+          echo "tag -> ${{ github.event.registry_package.package_version.container_metadata.tag.name }}"
+          echo "name -> ${{ github.event.registry_package.name }}"
+          echo "event -> ${ github.event }}"
