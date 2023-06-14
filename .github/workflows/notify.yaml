@@ -1,13 +1,23 @@
-name: notify
+name: Announcements
+run-name: Announcement for ${{ github.event_name == 'release' && github.event.release.name || github.event.registry_package.name }} | ${{ github.event_name }}
 
 on:
-  status
+  release:
+    types: [published]
+  registry_package:
+    types: [published, updated]
+
+env:
+  YQ_VERSION: "v4.32.2"
+  YQ_BINARY: yq_linux_amd64
+
 jobs:
-  status:
-    runs-on: ubuntu-latest
+  ghcr_upload:
+    name: ${{ github.event.registry_package.name }} uploaded to GHCR
+    runs-on: ubuntu-22.04
     steps:
-      - env:
-          DESCRIPTION: ${{ github.event.description }}
-        run: |
-          echo The status is error or failed: $DESCRIPTION
-          echo ${{ github.event }}
+      - uses: actions/checkout@v3
+      - run: |
+          echo tag -> ${{ github.event.registry_package.package_version.container_metadata.tag.name }}
+          echo name -> ${{ github.event.registry_package.name }}
+          echo event -> ${ github.event }}
