@@ -12,3 +12,4 @@ jobs:
     name: hi job
     steps:
       - run: echo hello
+      - uses: cjdcordeiro/spread@master
