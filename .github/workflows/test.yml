@@ -14,6 +14,6 @@ jobs:
       - run: echo hello
       - uses: actions/checkout@v3
         with:
-          repo: https://git.launchpad.net/~ubuntu-docker-images/ubuntu-docker-images/+git/nginx
+          repository: https://git.launchpad.net/~ubuntu-docker-images/ubuntu-docker-images/+git/nginx
       - run: ls && pwd
       # - uses: cjdcordeiro/spread@master
