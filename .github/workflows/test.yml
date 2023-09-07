@@ -12,6 +12,7 @@ jobs:
     name: hi job
     steps:
       - run: echo hello
+      - run: yq --help
       - uses: actions/checkout@v3
         with:
           repository: https://git.launchpad.net/~ubuntu-docker-images/ubuntu-docker-images/+git/nginx
