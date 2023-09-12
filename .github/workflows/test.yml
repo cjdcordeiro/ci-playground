@@ -13,7 +13,7 @@ jobs:
     steps:
       - if: ${{ env.FOO != '' }}
         env:
-          FOO: 1
+          FOO: ${{ secrets.FOO }}
         run: echo hello
       - run: yq -V
       - uses: actions/checkout@v4
