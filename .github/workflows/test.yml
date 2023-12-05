@@ -19,7 +19,7 @@ jobs:
           remove-haskell: 'true'
           remove-android: 'true'
           remove-codeql: 'true'
-          remove-docker-images: 'true'
+          # remove-docker-images: 'true'
 
       - name: Scan for vulnerabilities
         id: scan
