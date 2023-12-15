@@ -1,5 +1,7 @@
 name: test repo dispatch
 
+concurrency: snap
+
 on:
   repository_dispatch:
     types: [from-cjdc]
