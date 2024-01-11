@@ -1,6 +1,6 @@
 name: '🤝 Ubuntu Rocks - Member Onboarding'
 description: Become a contributing member of the Rocks Community
-title: "[onboarding]: "
+title: "[onboarding] <replace by your name/username>"
 labels: ["onboarding"]
 body:
   - type: markdown
@@ -28,7 +28,7 @@ body:
   - type: input
     id: matrix
     attributes:
-      label: Matrix username
+      label: 💬 Matrix username
       description: What is your Matrix username in the [Rocks Community space](https://matrix.to/#/#rocks:ubuntu.com)?
       placeholder: ex. johndoe
     validations:
@@ -44,7 +44,7 @@ body:
   - type: checkboxes
     id: coc
     attributes:
-      label: Canonical contributor licence agreement
+      label: Ubuntu Code of Conduct
       description: This GitHub playground is still part of the Rocks Community, and thus shall abide by the Ubuntu CoC.
       options:
         - label: I have read [Ubuntu Code of Conduct](https://ubuntu.com/community/ethos/code-of-conduct)
