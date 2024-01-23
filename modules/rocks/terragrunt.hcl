@@ -9,7 +9,12 @@ locals {
   team-repos = {
     "test-repo-1" : {
       homepage : "homepage.url",
+      visibility : "public", # or "internal"
       skip_secrets : true,
+      # Use the DRY-github-teams.tf generator below to manage the GH teams
+      teams : ["ROCKS"],
+      admin-team : "ROCKS-admins",
+      pr-approving-review-count : 1,
       description : <<-EOT
         repo description
       EOT
@@ -39,4 +44,43 @@ locals {
 inputs = {
   team-repos  = local.team-repos
   team-labels = concat(include.common.locals.org-labels, local.team-labels)
+}
+
+# DRY: avoiding re-defining the github teams for every repo
+generate "github-teams" {
+  path      = "DRY-github-teams.tf"
+  if_exists = "overwrite_terragrunt"
+  contents  = <<EOF
+# Create the GH teams
+resource "github_team" "ROCKS" {
+  name        = "ROCKS"
+  description = "The ROCKS team"
+  privacy     = "closed"
+}
+resource "github_team" "ROCKS-admins" {
+  name        = "ROCKS-admins"
+  description = "The ROCKS team members with admin access to the ROCKS repos"
+  privacy     = "closed"
+}
+
+# Add users to teams - NOTE: users must already exist in the org (ask IS)
+resource "github_team_members" "ROCKS-team-members" {
+  team_id  = github_team.ROCKS.id
+  members {
+    username = "cjdcordeiro"
+    role     = "maintainer"
+  }
+  members {
+    username = "ROCKsBot"
+    role     = "member"
+  }
+}
+resource "github_team_members" "ROCKS-admins-team-members" {
+  team_id  = github_team.ROCKS-admins.id
+  members {
+    username = "cjdcordeiro"
+    role     = "maintainer"
+  }
+}
+EOF
 }

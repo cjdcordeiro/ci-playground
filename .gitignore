@@ -38,7 +38,7 @@ terraform
 terragrunt_*
 
 # DRY auto-generated terragrunt paths 
-DRY-provider.tf
+DRY-*.tf
 
 # Local development
 .vscode

@@ -14,11 +14,14 @@ variable "GITHUB_TOKEN" {
   type        = string
   description = "GitHub Personal Access Token used by Terraform"
 }
+variable "GITHUB_ORG" {
+  type        = string
+  description = "GitHub org. Do NOT use 'canonical' for running tests."
+}
 
 provider "github" {
-  # alias = "canonical"
-  owner = "cjdcordeiro"
-  #   owner = "canonical"
+  owner = "cjdcordeiro-new-test"
+  #   owner = var.GITHUB_ORG
   token = var.GITHUB_TOKEN
 }
 EOF
