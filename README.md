@@ -1,4 +1,4 @@
-# Enterprise Engineering repos as code
+# EE repos as code
 
 ## Proposed structure
 
