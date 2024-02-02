@@ -1,34 +1,13 @@
-name: test repo dispatch
-
-concurrency: snap
+name: test pr
 
 on:
-  repository_dispatch:
-    types: [from-cjdc]
-  workflow_dispatch:
-  push:
+  pull_request:
+    branches:
+      - "test-branch"
 
 jobs:
   hi:
     runs-on: ubuntu-latest
     name: hi job
     steps:
-      - name: Maximise GH runner space
-        uses: easimon/maximize-build-space@v7
-        with:
-          root-reserve-mb: 40960
-          remove-dotnet: 'true'
-          remove-haskell: 'true'
-          remove-android: 'true'
-          remove-codeql: 'true'
-          # remove-docker-images: 'true'
-
-      - name: Scan for vulnerabilities
-        id: scan
-        uses: aquasecurity/trivy-action@master
-        with:
-          scan-type: 'image'
-          image-ref: 'ubuntu:22.04'
-          format: 'json'
-          output: 'foo.json'
-          ignore-unfixed: true
+      - run: echo hello
