@@ -6,7 +6,9 @@ on:
       - opened
       - synchronize
       - reopened
-
+  push:
+    branches:
+      - "ubuntu*"
 jobs:
   hi:
     runs-on: ubuntu-latest
