@@ -2,6 +2,8 @@ name: test pr
 
 on:
   pull_request:
+    types:
+      - opened
 
 jobs:
   hi:
