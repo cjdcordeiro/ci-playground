@@ -2,8 +2,6 @@ name: test pr
 
 on:
   pull_request:
-    branches:
-      - "test-branch"
 
 jobs:
   hi:
