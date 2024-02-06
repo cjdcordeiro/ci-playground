@@ -3,8 +3,8 @@ name: test
 on:
   push:
     paths:
-      - .github/**
-      - !test.md
+      - '.github/**'
+      - '!test.md'
 
 jobs:
   foo:
