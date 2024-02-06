@@ -3,10 +3,12 @@ name: test
 on:
   push:
   pull_request:
+    branches:
+      - "*26.04"
 
 jobs:
   foo:
     name: foo
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ github.ref_name }}
+
