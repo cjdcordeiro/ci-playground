@@ -9,4 +9,4 @@ jobs:
     name: foo
     runs-on: ubuntu-latest
     steps:
-      - run: echo foo
+      - run: echo ${{ github.ref_name }}
