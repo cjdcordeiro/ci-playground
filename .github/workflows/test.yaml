@@ -11,4 +11,4 @@ jobs:
     name: foo
     runs-on: ubuntu-latest
     steps:
-      - run: echo foo ${{ github.ref_name }}
+      - run: echo foo ${{ github.ref_name }} 2
