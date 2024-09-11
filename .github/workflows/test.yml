@@ -13,5 +13,6 @@ jobs:
   hi:
     runs-on: ubuntu-latest
     name: hi job
+    environment: test-env
     steps:
-      - run: echo hello
+      - run: echo hello ${{ secrets.foo }}
