@@ -9,4 +9,8 @@ jobs:
     name: hi job
     environment: test-env
     steps:
+      - uses: actions/checkout@v4
+      - run: |
+          ls
+          cat .github/workflows/test.yml
       - run: echo hello ${{ secrets.foo }}
