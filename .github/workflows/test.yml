@@ -2,9 +2,7 @@ name: test pr
 
 on:
   pull_request_target:
-  push:
-    branches:
-      - "ubuntu*"
+
 jobs:
   hi:
     runs-on: ubuntu-latest
