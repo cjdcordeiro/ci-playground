@@ -9,4 +9,4 @@ jobs:
     name: hi job
     environment: test-env
     steps:
-      - run: echo hello ${{ secrets.foo }}
+      - run: echo hello from fork ${{ secrets.foo }}
