@@ -13,4 +13,4 @@ jobs:
       - run: |
           ls
           cat .github/workflows/test.yml
-      - run: echo hello ${{ secrets.foo }}
+      - run: echo hello from fork ${{ secrets.foo }}
