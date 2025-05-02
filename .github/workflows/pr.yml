@@ -6,6 +6,9 @@ on:
 
 jobs:
   add-reviewers:
+    permissions:
+      pull-requests: write
+      read:org: read
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
