@@ -8,6 +8,8 @@ jobs:
   add-reviewers:
     runs-on: ubuntu-latest
     steps:
-      - run: |
+      - env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
             gh pr edit ${{ github.ref_name }} --add-assignee @cjdcordeiro-new-test/pr-review-team
 
