@@ -1,0 +1,13 @@
+name: Manage PRs
+
+on:
+  pull_request:
+    types: [opened, ready_for_review]
+
+jobs:
+  add-reviewers:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+            gh pr edit ${{ github.ref_name }} --add-assignee @cjdcordeiro-new-test/pr-review-team
+
