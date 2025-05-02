@@ -6,29 +6,20 @@ on:
 
 permissions:
   pull-requests: write
+  contents: write
 
 jobs:
   add-reviewers:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: kentaro-m/auto-assign-action@v2.0.0
-        with:
-          configuration-path: '.github/some_name_for_configs.yml' # Only needed if you use something other than .github/auto_assign.yml
       - env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            #run: |
+        run: |
+            gh api \
+            --method POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            /repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/requested_reviewers \
+            -f "team_reviewers[]=pr-review-team" 
           #gh pr edit ${{ github.ref }} --add-assignee @cjdcordeiro-new-test/pr-review-team
-        uses: actions/github-script@v2
-        with:
-          script: |
-            const team = 'pr-review-team';
-            const token = process.env.GITHUB_TOKEN;
-
-            const response = await github.rest.pulls.addReviewers({
-              pull_id: context.payload.pull_id,
-              team_reviewers: [team],
-              token
-            });
-
-            console.log(response);
+          #
