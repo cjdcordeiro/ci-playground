@@ -2,6 +2,7 @@ name: test pr
 
 on:
   pull_request_target:
+  workflow_call:
 
 jobs:
   hi:
