@@ -1,8 +1,10 @@
 name: Triage PRs
 
 on:
-  schedule:
-    - cron: "* * * * *"
+  # Using a schedule because events like pull_request only work if the workflow
+  # exists on the base (target) branch of the PR
+  #schedule:
+  #  - cron: "* * * * *"
   workflow_dispatch:
 
 jobs:
@@ -33,7 +35,7 @@ jobs:
                 -H "Accept: application/vnd.github+json" \
                 -H "X-GitHub-Api-Version: 2022-11-28" \
                 /repos/${{ github.repository }}/pulls/${pr_number}/requested_reviewers \
-                -f "team_reviewers[]=${{ env.REVIEWERS }}"
+                -f "reviewers[]=${{ env.REVIEWERS }}"
 
               # Cannot use `gh pr edit`:
               # https://github.com/cli/cli/issues/4844
