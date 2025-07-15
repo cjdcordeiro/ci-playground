@@ -3,6 +3,7 @@ name: Triage PRs
 on:
   schedule:
     - cron: "* * * * *"
+  workflow_dispatch:
 
 jobs:
   add-reviewers:
