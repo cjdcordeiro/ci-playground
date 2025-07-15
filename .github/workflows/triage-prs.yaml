@@ -15,6 +15,8 @@ jobs:
           REVIEWERS: "rocksbot" #"slice-reviewers-guild"
         run: |
           set -ex
+          set -o pipefail
+
           for pr_number in `gh pr list -R ${{ github.repository }} \
             --search "-review-requested:${{ env.REVIEWERS }}" | jq '.[].number'`
             do
