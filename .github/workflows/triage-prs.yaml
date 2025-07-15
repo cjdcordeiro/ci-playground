@@ -15,12 +15,17 @@ jobs:
           REVIEWERS: "rocksbot" #"slice-reviewers-guild"
         run: |
           set -euxo pipefail
-
-          gh pr list -R ${{ github.repository }} \
-            --search "-review-requested:${{ env.REVIEWERS }}"
+          
           for pr_number in `gh pr list -R ${{ github.repository }} \
-            --search "-review-requested:${{ env.REVIEWERS }}" | jq -e '.[].number'`
+            --search "-review-requested:${{ env.REVIEWERS }}" | jq -e '.[].number \
+            || echo fail'`
             do
+              if [[ "$pr_number" == "fail" ]]
+              then
+                echo "ERR: couldn't search for PRs"
+                exit 1
+              fi
+
               echo "Requesting review from ${{ env.REVIEWERS }} on PR ${pr_number}"
 
               gh api \
