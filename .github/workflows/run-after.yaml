@@ -3,7 +3,7 @@ name: alex and cris
 on:
   workflow_run: 
     workflows: [test pr]
-    type:
+    types:
       - completed
 
 jobs:
@@ -12,3 +12,5 @@ jobs:
     steps:
       - run: echo hello ${{ secrets.foo }}
       - run: echo ${{ github.event.workflow_run.conclusion }}
+      - uses: actions/checkout@v4
+      - run: echo ${{ github.action_ref }}
