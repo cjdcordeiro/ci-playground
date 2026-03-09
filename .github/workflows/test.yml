@@ -14,8 +14,10 @@ jobs:
         run: |
           SECRET=$(($RANDOM))
           echo $SECRET
-          echo "::add-mask::$SECRET"
           SECRET_HANDLE=$(sha256sum <<< $SECRET | cut -d' ' -f1)
+          echo $SECRET_HANDLE
+          
+          echo "::add-mask::$SECRET_HANDLE"
           echo "secret=$SECRET_HANLE" >> $GITHUB_OUTPUT
   bye:
     runs-on: ubuntu-latest
