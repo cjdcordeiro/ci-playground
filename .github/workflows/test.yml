@@ -1,19 +1,24 @@
 name: test pr
 
 on:
-  pull_request:
-  workflow_dispatch:
+  push:
 
 jobs:
   hi:
     runs-on: ubuntu-latest
     name: hi job
-    environment: test-env
+    outputs:
+      secret: ${{ steps.secrets.outputs.secret }}
     steps:
-      - uses: actions/checkout@v4
-        with:
-          foo: bar
-      - run: |
-          ls
-          cat .github/workflows/test.yml
-      - run: echo hello ${{ secrets.foo }}
+      - id: secrets
+        run: |
+          SECRET=$(($RANDOM))
+          echo $SECRET
+          echo "::add-mask::$SECRET"
+          SECRET_HANDLE=$(sha256sum <<< $SECRET | cut -d' ' -f1)
+          echo "secret=$SECRET_HANLE" >> $GITHUB_OUTPUT
+  bye:
+    runs-on: ubuntu-latest
+    needs: [ hi ]
+    steps:
+      - run: echo ${{ needs.hi.outputs.secret }}
