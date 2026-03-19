@@ -2,6 +2,7 @@ name: test pr
 
 on:
   push:
+  pull_request_target: 
 
 jobs:
   hi:
@@ -9,25 +10,13 @@ jobs:
     name: hi job
     steps:
       - uses: actions/checkout@v6
-      - id: secrets
-        run: |
-          git config --global user.email "bot@users.noreply.github.com"
-          git config --global user.name "Cristovao Cordeiro Senior"
-          git checkout -b robot-branch
-          echo "hello" > testfile
-          git add testfile
-          git commit -am "test: open pr"
-
-          git push origin robot-branch
 
       - env:
           GH_TOKEN: ${{ github.token }}
         run: |
-            gh api \
-              --method POST \
-              -H "Accept: application/vnd.github+json" \
-              -H "X-GitHub-Api-Version: 2022-11-28" \
-              /repos/cjdcordeiro/ci-playground/pulls \
-               -f 'title=Amazing new feature' -f 'body=Please pull these awesome changes in!' -f 'head=robot-branch' -f 'base=main'
-          
-
+          git checkout -b foo
+          touch bar
+          git add bar
+          git commit -am "test"
+          git remote set-url origin https://x-access-token:${{ secrets. GITHUB_TOKEN}}@github.com/cjdcordeiro/ci-playground.git
+          git push origin foo
