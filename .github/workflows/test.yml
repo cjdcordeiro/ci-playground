@@ -15,10 +15,10 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           git config --global user.email "you@example.com"
-          git config --global user.name "Your Name"
-          git checkout -b foo
+          git config --global user.name "Agent Smith"
+          # git checkout -b foo
           touch bar
           git add bar
           git commit -am "test"
           git remote set-url origin https://x-access-token:${{ secrets. GITHUB_TOKEN}}@github.com/cjdcordeiro/ci-playground.git
-          git push origin foo
+          git push origin main # foo
