@@ -1,0 +1,30 @@
+name: New CODA issue
+
+on:
+  workflow_dispatch:
+    inputs:
+      background:
+        description: 'Background information for the issue'
+        required: true
+      mentor: 
+        description: 'Who is the mentor'
+        required: true
+        default: 'anna'
+        type: choice
+        options:
+        - anna
+        - cris
+        - john
+
+jobs:
+  create-issue:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@v7
+      - run: |
+          gh issue create --title "test CODA" --body "${{ inputs.background }} -- ${{ inputs.mentor }}"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
